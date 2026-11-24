@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مشكاة الثقافة | التراث الذكي — Smart Heritage</title>
+  <style>
+    :root {
+      --bg-dark: #07111f;
+      --bg-card: #0d1d33;
+      --bg-soft: #122744;
+      --gold: #f5b942;
+      --cyan: #38bdf8;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: rgba(148, 163, 184, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background: linear-gradient(180deg, #060e1a 0%, #0a1729 55%, #07111f 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* الشريط العلوي */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 17, 31, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-logo-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .brand-logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 2px;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .brand-sub {
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.92rem;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      background: rgba(245, 185, 66, 0.14);
+      color: var(--gold);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 36px 20px;
+    }
+
+    section {
+      margin-bottom: 56px;
+    }
+
+    .section-title {
+      font-size: 1.55rem;
+      margin-bottom: 10px;
+      color: var(--gold);
+    }
+
+    .section-desc {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    /* القسم الرئيسي */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 11px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #07111f;
+    }
+
+    .btn-secondary {
+      background: var(--bg-soft);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .media-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .media-card img {
+      width: 100%;
+      height: 270px;
+      object-fit: cover;
+      display: block;
+      background: #081322;
+    }
+
+    .media-card .caption {
+      padding: 14px 16px;
+    }
+
+    .media-card .caption h3 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .media-card .caption p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 20px;
+    }
+
+    /* قسم التقييم و Google Form */
+    .eval-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+    }
+
+    .form-frame-wrap {
+      margin-top: 18px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #081322;
+    }
+
+    .form-frame-wrap iframe {
+      width: 100%;
+      height: 540px;
+      border: 0;
+      display: block;
+    }
+
+    .form-notice {
+      padding: 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* التواصل */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .contact-card span {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .contact-card a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- الشريط العلوي مع شعار الفريق بدل حرف الميم -->
+  <header>
+    <div class="nav-container">
+      <a href="#home" class="brand">
+        <div class="brand-logo-box">
+          <img
+            data-smart-key="logo"
+            alt="شعار فريق مشكاة الثقافة"
+          />
+        </div>
+        <div>
+          <div class="brand-title">مشكاة الثقافة | التراث الذكي</div>
+          <div class="brand-sub">MISHKAT AL-THAQAFA | SMART HERITAGE</div>
+        </div>
+      </a>
+
+      <nav>
+        <a href="#home">الرئيسية</a>
+        <a href="#full-model">المجسم الكامل</a>
+        <a href="#stages">مراحل البناء</a>
+        <a href="#monitoring">لوحة المراقبة ESP32</a>
+        <a href="#evaluation">تقييم المشروع</a>
+        <a href="#contact">التواصل</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- القسم الأول: مجسم مشروع مشكاة الثقافة التراث الذكي -->
+    <section id="home" class="hero">
+      <div>
+        <h1>مشروع مشكاة الثقافة — التراث الذكي</h1>
+        <p>
+          منظومة ذكية لحماية المواقع التراثية ومراقبتها بيئياً وأمنياً باستخدام المستشعرات والاتصال اللاسلكي عبر ESP32، مع نموذج هندسي متكامل يجمع بين الأصالة والتقنية.
+        </p>
+        <div class="btn-group">
+          <a href="#full-model" class="btn btn-primary">استعراض المجسم الكامل</a>
+          <a href="#evaluation" class="btn btn-secondary">نموذج التقييم</a>
+        </div>
+      </div>
+
+      <div class="media-card">
+        <img
+          data-smart-key="projectHero"
+          alt="مجسم مشروع مشكاة الثقافة التراث الذكي"
+        />
+        <div class="caption">
+          <h3>مجسم مشروع مشكاة الثقافة التراث الذكي</h3>
+          <p>النموذج العام للمشروع وتكامل عناصر الحماية والمراقبة التراثية.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- القسم الثاني: الصورة الأولى في المجسم الكامل -->
+    <section id="full-model">
+      <h2 class="section-title">المجسم الكامل</h2>
+      <p class="section-desc">عرض تفصيلي للمجسم الكامل للمشروع وتوزيع العناصر المعمارية والتقنية.</p>
+      <div class="grid-3">
+        <div class="media-card">
+          <img
+            data-smart-key="fullModelFirst"
+            alt="الصورة الأولى في المجسم الكامل"
+          />
+          <div class="caption">
+            <h3>الصورة الأولى — المجسم الكامل</h3>
+            <p>منظر شامل يوضح تكوين المجسم وترابط المسارات والمنشآت.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- القسم الثالث: المرحلة الأولى بناء الهيكل المعماري وتوزيع المناطق -->
+    <section id="stages">
+      <h2 class="section-title">مراحل البناء والتنفيذ</h2>
+      <p class="section-desc">توثيق خطوات التنفيذ الهندسي والمعماري للمشروع.</p>
+      <div class="grid-3">
+        <div class="media-card">
+          <img
+            data-smart-key="stage1Architecture"
+            alt="المرحلة الأولى بناء الهيكل المعماري وتوزيع المناطق"
+          />
+          <div class="caption">
+            <h3>المرحلة الأولى: بناء الهيكل المعماري وتوزيع المناطق</h3>
+            <p>تحديد الهيكل الإنشائي وتقسيم المناطق الوظيفية داخل الموقع التراثي.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- القسم الرابع: لوحة المراقبة اللاسلكية عبر الجوال ESP32 -->
+    <section id="monitoring">
+      <h2 class="section-title">لوحة المراقبة اللاسلكية عبر الجوال ESP32</h2>
+      <p class="section-desc">متابعة القراءات والحالة التشغيلية عن بُعد عبر الجوال باستخدام متحكم ESP32.</p>
+      <div class="grid-3">
+        <div class="media-card">
+          <img
+            data-smart-key="esp32Dashboard"
+            alt="لوحة المراقبة اللاسلكية عبر الجوال ESP32"
+          />
+          <div class="caption">
+            <h3>لوحة المراقبة اللاسلكية عبر الجوال ESP32</h3>
+            <p>واجهة المراقبة اللاسلكية لعرض بيانات الحساسات والتنبيهات مباشرة.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- القسم الخامس: ربط التقييم بـ Google Form -->
+    <section id="evaluation">
+      <h2 class="section-title">تقييم المشروع (Google Form)</h2>
+      <p class="section-desc">شاركنا رأيك وتقييمك للمشروع عبر نموذج Google Form أدناه.</p>
+
+      <div class="eval-box">
+        <div class="btn-group">
+          <a id="googleFormDirectLink" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            فتح نموذج التقييم في نافذة جديدة
+          </a>
+        </div>
+
+        <div class="form-frame-wrap" id="googleFormContainer">
+          <div class="form-notice" id="googleFormNotice">
+            لربط نموذج Google Form مباشرة: استبدل قيمة <strong>GOOGLE_FORM_URL</strong> داخل وسم <code>&lt;script&gt;</code> في أسفل الصفحة برابط النموذج الخاص بك (مثال: <code>https://docs.google.com/forms/d/e/XXXX/viewform?embedded=true</code>).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- القسم السادس: التواصل -->
+    <section id="contact">
+      <h2 class="section-title">التواصل</h2>
+      <p class="section-desc">بيانات التواصل المباشرة الخاصة بالمشروع.</p>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <span>البريد الإلكتروني</span>
+          <a href="mailto:khaledd.bu.sa@gmail.com">khaledd.bu.sa@gmail.com</a>
+        </div>
+        <div class="contact-card">
+          <span>رقم الجوال</span>
+          <a href="tel:0568662922">0568662922</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    مشكاة الثقافة | التراث الذكي — البريد: khaledd.bu.sa@gmail.com | الجوال: 0568662922
+  </footer>
+
+  <script>
+    // =========================================================================
+    // 1) قائمة الأسماء والامتدادات المحتملة لكل صورة لضمان ظهورها حتى لو تكرر الامتداد
+    // =========================================================================
+    const IMAGE_CANDIDATES = {
+      logo: [
+        "team-logo.png",
+        "team-logo.jpg",
+        "logo.png",
+        "logo.jpg",
+        "assets/team-logo.png",
+        "assets/logo.png",
+        "media/team-logo.png"
+      ],
+      projectHero: [
+        "hero-model.jpg",
+        "hero-model.jpg.jpg",
+        "hero-model.png",
+        "hero-model.jpeg",
+        "assets/hero-model.jpg",
+        "media/hero-model.jpg"
+      ],
+      fullModelFirst: [
+        "full-model-1.jpg",
+        "full-model.jpg",
+        "hero-model.jpg",
+        "hero-model.jpg.jpg",
+        "stage-2-parking-excavation.jpg",
+        "stage-2-parking-excavation.jpg.jpeg",
+        "assets/full-model-1.jpg"
+      ],
+      stage1Architecture: [
+        "stage-1-structure.jpg",
+        "stage-1-structure.jpg.jpeg",
+        "stage-1-structure.png",
+        "stage-1.jpg",
+        "assets/stage-1-structure.jpg",
+        "media/stage-1-structure.jpg"
+      ],
+      esp32Dashboard: [
+        "iot-mobile-dashboard.jpg",
+        "iot-mobile-dashboard.jpg.jpeg",
+        "iot-mobile-dashboard.png",
+        "esp32-dashboard.jpg",
+        "esp32.jpg",
+        "assets/iot-mobile-dashboard.jpg",
+        "media/iot-mobile-dashboard.jpg"
+      ]
+    };
+
+    function loadSmartImage(imgEl, candidates) {
+      let idx = 0;
+
+      function tryNext() {
+        if (idx >= candidates.length) {
+          imgEl.style.objectFit = "contain";
+          imgEl.alt += " (تأكد من وجود ملف الصورة بنفس الاسم في المستودع)";
+          return;
+        }
+        const src = candidates[idx++];
+        imgEl.src = src;
+      }
+
+      imgEl.addEventListener("error", tryNext);
+      tryNext();
+    }
+
+    document.querySelectorAll("img[data-smart-key]").forEach((img) => {
+      const key = img.getAttribute("data-smart-key");
+      const list = IMAGE_CANDIDATES[key] || [];
+      loadSmartImage(img, list);
+    });
+
+    // =========================================================================
+    // 2) ربط نموذج Google Form (ضع رابط النموذج بين علامتي التنصيص)
+    // =========================================================================
+    const GOOGLE_FORM_URL = ""; // مثال: "https://docs.google.com/forms/d/e/1FAIpQLSc.../viewform?embedded=true"
+
+    const directLinkEl = document.getElementById("googleFormDirectLink");
+    const containerEl = document.getElementById("googleFormContainer");
+    const noticeEl = document.getElementById("googleFormNotice");
+
+    if (GOOGLE_FORM_URL && GOOGLE_FORM_URL.trim() !== "") {
+      const cleanUrl = GOOGLE_FORM_URL.trim();
+      directLinkEl.href = cleanUrl.replace("?embedded=true", "");
+      noticeEl.remove();
+
+      const iframe = document.createElement("iframe");
+      iframe.src = cleanUrl.includes("embedded=true")
+        ? cleanUrl
+        : cleanUrl + (cleanUrl.includes("?") ? "&embedded=true" : "?embedded=true");
+      iframe.loading = "lazy";
+      iframe.title = "نموذج تقييم المشروع";
+      containerEl.appendChild(iframe);
+    }
+  </script>
+</body>
+</html>
