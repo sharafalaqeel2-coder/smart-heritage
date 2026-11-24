@@ -64,16 +64,23 @@
       color: var(--white);
     }
     .brand-icon {
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       border-radius: 12px;
-      background: linear-gradient(135deg, var(--gold-500), #9e7b18);
-      color: var(--navy-950);
+      background: #ffffff;
+      border: 2px solid var(--gold-500);
       display: grid;
       place-items: center;
-      font-weight: 900;
-      font-size: 1.2rem;
+      overflow: hidden;
+      flex-shrink: 0;
       box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+    }
+    .brand-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 2px;
+      display: block;
     }
     .brand-text h1 { font-size: 1.05rem; font-weight: 800; color: var(--gold-400); line-height: 1.2; }
     .brand-text span { font-size: 0.72rem; color: var(--slate-300); letter-spacing: 0.5px; display: block; }
@@ -214,6 +221,7 @@
       height: 360px;
       object-fit: cover;
       display: block;
+      background: var(--navy-800);
     }
     .hero-status-bar {
       padding: 1rem 1.25rem;
@@ -259,6 +267,14 @@
       gap: 0.5rem;
     }
     .card p { color: var(--slate-300); font-size: 0.92rem; }
+    .card a.contact-link {
+      color: var(--gold-400);
+      text-decoration: none;
+      font-weight: 700;
+      direction: ltr;
+      display: inline-block;
+    }
+    .card a.contact-link:hover { text-decoration: underline; }
 
     .scalability-banner {
       margin-top: 2.25rem;
@@ -487,6 +503,7 @@
       object-fit: cover;
       border-radius: 10px;
       margin-bottom: 0.85rem;
+      background: var(--navy-800);
     }
     .pdf-viewer {
       width: 100%;
@@ -526,6 +543,7 @@
       height: 220px;
       object-fit: cover;
       display: block;
+      background: var(--navy-800);
     }
     .gallery-caption { padding: 1rem; }
     .gallery-caption small { color: var(--gold-400); font-weight: 700; }
@@ -652,7 +670,9 @@
   <header>
     <div class="nav-container">
       <a href="#home" class="brand">
-        <div class="brand-icon">م</div>
+        <div class="brand-icon">
+          <img id="teamLogoImg" data-img-key="logo" alt="شعار فريق مشكاة الثقافة" />
+        </div>
         <div class="brand-text">
           <h1>مشكاة الثقافة | التراث الذكي</h1>
           <span>MISHKAT AL-THAQAFA | SMART HERITAGE</span>
@@ -690,7 +710,7 @@
         </div>
       </div>
       <div class="hero-card">
-        <img src="assets/hero-model.jpg" alt="مجسم مشروع مشكاة الثقافة - التراث الذكي" />
+        <img id="heroModelImg" data-img-key="heroModel" alt="مجسم مشروع مشكاة الثقافة - التراث الذكي" />
         <div class="hero-status-bar">
           <span><i class="dot-live"></i> حالة المنظومة: 6 وحدات متكاملة نشطة</span>
           <strong style="color:var(--gold-400)">MISHKAT AL-THAQAFA</strong>
@@ -900,7 +920,7 @@
       <p>شرح عملي على المجسم الفعلي يوضح آلية عمل المواقف الذكية، والمتاحف، وموقع الحفريات، وغرفة المراقبة والتحكم.</p>
     </div>
     <div class="media-box">
-      <video controls preload="metadata" poster="assets/hero-model.jpg">
+      <video id="introVideoEl" controls preload="metadata" data-poster-key="heroModel">
         <source src="media/Smart_Heritage_Intro.mp4" type="video/mp4" />
         متصفحك لا يدعم تشغيل الفيديو مباشرة. يمكنك تحميل المقطع من الرابط أدناه.
       </video>
@@ -948,14 +968,14 @@
     </div>
     <div class="media-box pdf-layout">
       <div class="pdf-cover-card">
-        <img src="assets/pdf-cover.jpg" alt="غلاف البحث العلمي لمشروع التراث الذكي" />
+        <img id="pdfCoverImg" data-img-key="pdfCover" alt="غلاف البحث العلمي لمشروع التراث الذكي" />
         <h3 style="color:var(--gold-400);font-size:1.05rem;margin-bottom:0.4rem">Smart Heritage: Automated Protection for Heritage Sites</h3>
         <p style="color:var(--slate-300);font-size:0.85rem;margin-bottom:1rem">
           يتضمن المشكلة البحثية، التصميم المعماري والإلكتروني، جداول التوصيل، نتائج الاختبار، والأكواد البرمجية الكاملة.
         </p>
-        <a href="docs/Smart_Heritage_Engineering_Notebook.pdf" download class="btn btn-gold" style="width:100%">⬇️ تحميل البحث العلمي (PDF)</a>
+        <a id="pdfDownloadLink" href="docs/Smart_Heritage_Engineering_Notebook.pdf" download class="btn btn-gold" style="width:100%">⬇️ تحميل البحث العلمي (PDF)</a>
       </div>
-      <iframe class="pdf-viewer" src="docs/Smart_Heritage_Engineering_Notebook.pdf" title="البحث العلمي لمشروع التراث الذكي"></iframe>
+      <iframe id="pdfViewerFrame" class="pdf-viewer" src="docs/Smart_Heritage_Engineering_Notebook.pdf" title="البحث العلمي لمشروع التراث الذكي"></iframe>
     </div>
   </section>
 
@@ -964,15 +984,19 @@
     <div class="section-header">
       <span class="section-badge">آراء الزوار ولجنة التحكيم</span>
       <h2>تقييم المشروع</h2>
-      <p>نرحب بملاحظاتكم واقتراحاتكم لتطوير منظومة «مشكاة الثقافة – التراث الذكي».</p>
+      <p>نرحب بملاحظاتكم واقتراحاتكم لتطوير منظومة «مشكاة الثقافة – التراث الذكي» عبر نموذج Google Form.</p>
     </div>
     <div class="rating-wrap">
       <!--
-        لتفعيل الحفظ السحابي المباشر في Google Sheets / Google Forms:
-        ضع رابط Google Form (بصيغة /viewform?embedded=true) داخل المتغير GOOGLE_FORM_EMBED_URL في السكربت أدناه،
-        وسيعرض الموقع النموذج الحقيقي مباشرة دون أي رسالة نجاح وهمية.
+        لربط نموذج Google Form مباشرة:
+        ضع رابط التضمين في المتغير GOOGLE_FORM_EMBED_URL داخل السكربت أدناه
+        مثال: "https://docs.google.com/forms/d/e/1FAIpQLSc.../viewform?embedded=true"
       -->
       <div id="googleFormContainer" style="display:none;margin-bottom:1.5rem">
+        <div style="margin-bottom:0.85rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem">
+          <span style="color:var(--gold-400);font-weight:700">📋 نموذج تقييم المشروع (Google Form)</span>
+          <a id="googleFormExternalLink" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:0.45rem 0.9rem;font-size:0.85rem">↗ فتح النموذج في تبويب مستقل</a>
+        </div>
         <iframe id="googleFormFrame" src="" width="100%" height="580" frameborder="0" marginheight="0" marginwidth="0" style="border-radius:14px;background:#fff">جارٍ التحميل…</iframe>
       </div>
 
@@ -1061,60 +1085,190 @@
         <p><strong>مشرف الفريق:</strong> أ. شرف العقيل (Sharaf Al-Aqeel)<br><strong>المجال:</strong> الأنظمة المدمجة، إنترنت الأشياء (IoT)، وحماية التراث الثقافي.</p>
       </div>
       <div class="card">
-        <h3>📬 قنوات التواصل الرسمية</h3>
-        <p>سيتم إضافة البريد الإلكتروني الرسمي وحسابات التواصل المعتمدة للفريق فور اعتمادها للنشر العام دون إدراج أي بيانات غير مؤكدة.</p>
+        <h3>📬 قنوات التواصل المباشرة</h3>
+        <p>
+          <strong>البريد الإلكتروني:</strong> <a class="contact-link" href="mailto:khaledd.bu.sa@gmail.com">khaledd.bu.sa@gmail.com</a><br>
+          <strong>رقم الجوال:</strong> <a class="contact-link" href="tel:0568662922">0568662922</a>
+        </p>
       </div>
     </div>
   </section>
 
   <footer>
     <p><strong>مشكاة الثقافة | التراث الذكي – MISHKAT AL-THAQAFA | SMART HERITAGE</strong></p>
+    <p>البريد الإلكتروني: <a href="mailto:khaledd.bu.sa@gmail.com" style="color:var(--gold-400);text-decoration:none">khaledd.bu.sa@gmail.com</a> — الجوال: <a href="tel:0568662922" style="color:var(--gold-400);text-decoration:none">0568662922</a></p>
     <p>«تقنية ذكية لحماية تراثنا» — جميع الحقوق محفوظة لفريق المشروع © 2026</p>
   </footer>
 
   <script>
     // =========================================================
+    // 0. Smart Image & File Resolver (Handles .jpg, .jpeg, .png,
+    //    and duplicate extensions in root or /assets)
+    // =========================================================
+    const IMAGE_SOURCES = {
+      logo: [
+        "Team-Logo.jpg",
+        "team-logo.jpg",
+        "team-logo.png",
+        "team-logo.jpeg",
+        "assets/Team-Logo.jpg",
+        "assets/team-logo.jpg",
+        "assets/team-logo.png"
+      ],
+      heroModel: [
+        "assets/hero-model.jpg",
+        "hero-model.jpg",
+        "hero-model.jpg.jpg",
+        "assets/hero-model.jpg.jpg",
+        "hero-model.jpeg",
+        "assets/hero-model.jpeg",
+        "hero-model.png",
+        "assets/hero-model.png"
+      ],
+      stage1: [
+        "assets/stage-1-structure.jpg",
+        "stage-1-structure.jpg",
+        "stage-1-structure.jpg.jpeg",
+        "assets/stage-1-structure.jpg.jpeg",
+        "stage-1-structure.jpeg",
+        "assets/stage-1-structure.jpeg",
+        "stage-1-structure.png",
+        "assets/stage-1-structure.png"
+      ],
+      stage2: [
+        "assets/stage-2-parking-excavation.jpg",
+        "stage-2-parking-excavation.jpg",
+        "stage-2-parking-excavation.jpg.jpeg",
+        "assets/stage-2-parking-excavation.jpg.jpeg",
+        "stage-2-parking-excavation.jpeg",
+        "assets/stage-2-parking-excavation.jpeg"
+      ],
+      stage3: [
+        "assets/stage-3-control-room.jpg",
+        "stage-3-control-room.jpg",
+        "stage-3-control-room.jpeg",
+        "assets/stage-3-control-room.jpeg",
+        "stage-3-control-room.png"
+      ],
+      stage4: [
+        "assets/stage-4-excavation-sensors.jpg",
+        "stage-4-excavation-sensors.jpg",
+        "stage-4-excavation-sensors.jpeg",
+        "assets/stage-4-excavation-sensors.jpeg",
+        "stage-4-excavation-sensors.png"
+      ],
+      wiring: [
+        "assets/wiring-diagram-v5.jpg",
+        "wiring-diagram-v5.jpg",
+        "wiring-diagram-v5.jpeg",
+        "assets/wiring-diagram-v5.jpeg",
+        "wiring-diagram-v5.png"
+      ],
+      iotDashboard: [
+        "iot-mobile-dashboard.jpeg",
+        "assets/iot-mobile-dashboard.jpg",
+        "iot-mobile-dashboard.jpg",
+        "iot-mobile-dashboard.jpg.jpeg",
+        "assets/iot-mobile-dashboard.jpg.jpeg",
+        "iot-mobile-dashboard.png"
+      ],
+      pdfCover: [
+        "assets/pdf-cover.jpg",
+        "pdf-cover.jpg",
+        "pdf-cover.jpg.jpg",
+        "assets/pdf-cover.jpg.jpg",
+        "pdf-cover.jpeg",
+        "pdf-cover.png"
+      ]
+    };
+
+    const resolvedSrcCache = {};
+
+    function resolveImageSource(key, onResolved) {
+      if (resolvedSrcCache[key]) {
+        onResolved(resolvedSrcCache[key]);
+        return;
+      }
+      const candidates = IMAGE_SOURCES[key] || [];
+      let index = 0;
+
+      function testNext() {
+        if (index >= candidates.length) {
+          onResolved(candidates[0] || "");
+          return;
+        }
+        const candidateUrl = candidates[index++];
+        const probe = new Image();
+        probe.onload = () => {
+          resolvedSrcCache[key] = candidateUrl;
+          onResolved(candidateUrl);
+        };
+        probe.onerror = testNext;
+        probe.src = candidateUrl;
+      }
+
+      testNext();
+    }
+
+    function applySmartImagesToDom() {
+      document.querySelectorAll("img[data-img-key]").forEach((imgEl) => {
+        const key = imgEl.getAttribute("data-img-key");
+        resolveImageSource(key, (finalSrc) => {
+          if (finalSrc) imgEl.src = finalSrc;
+        });
+      });
+
+      const videoEl = document.getElementById("introVideoEl");
+      if (videoEl) {
+        const posterKey = videoEl.getAttribute("data-poster-key") || "heroModel";
+        resolveImageSource(posterKey, (finalPoster) => {
+          if (finalPoster) videoEl.poster = finalPoster;
+        });
+      }
+    }
+
+    // =========================================================
     // 1. Gallery Data (Real Project Images Only)
     // =========================================================
     const GALLERY_ITEMS = [
       {
-        src: "assets/hero-model.jpg",
+        imgKey: "heroModel",
         cat: "المجسم الكامل",
         title: "المجسم المتكامل لمشروع مشكاة الثقافة – التراث الذكي",
         desc: "لقطة شاملة للمناطق الخمس: المواقف الذكية، متحف المخطوطات، المتحف الأثري، موقع الحفريات، وغرفة المراقبة والتحكم."
       },
       {
-        src: "assets/stage-1-structure.jpg",
+        imgKey: "stage1",
         cat: "مراحل التنفيذ",
         title: "المرحلة الأولى: بناء الهيكل المعماري وتوزيع المناطق",
         desc: "تنفيذ المجسم المعماري وتحديد مواقع الحساسات ومسارات الحركة والمواقف الأربعة."
       },
       {
-        src: "assets/stage-2-parking-excavation.jpg",
+        imgKey: "stage2",
         cat: "مراحل التنفيذ",
         title: "المرحلة الثانية: تجهيز المواقف الذكية A1–A4 وحفرة التنقيب",
         desc: "تثبيت الرادار فوق الصوتي الدوار للمواقف وتجهيز موقع الحفريات بالرمل والحجارة وحساسات الأمان."
       },
       {
-        src: "assets/stage-3-control-room.jpg",
+        imgKey: "stage3",
         cat: "الأجهزة والمكونات",
         title: "المرحلة الثالثة: تركيب حساسات غرفة المراقبة والتحكم",
         desc: "تركيب حساس الأشعة تحت الحمراء IR والحساس المغناطيسي Reed Switch ومؤشرات الحالة LED على باب غرفة التحكم."
       },
       {
-        src: "assets/stage-4-excavation-sensors.jpg",
+        imgKey: "stage4",
         cat: "الأجهزة والمكونات",
         title: "المرحلة الرابعة: دمج المتحكم وحساسات موقع الحفريات",
         desc: "توصيل متحكم الأردوينو وحساسات المسافة والحركة في موقع الحفريات لاكتشاف الاقتراب أو السقوط."
       },
       {
-        src: "assets/wiring-diagram-v5.jpg",
+        imgKey: "wiring",
         cat: "المخططات التقنية",
         title: "المخطط الكهربائي الكامل (Arduino Mega 2560 + ESP32)",
         desc: "مخطط الربط الهندسي الشامل لجميع الحساسات والمشغلات ومقسمات الجهد 5V إلى 3.3V."
       },
       {
-        src: "assets/iot-mobile-dashboard.jpg",
+        imgKey: "iotDashboard",
         cat: "التجربة الرقمية",
         title: "لوحة المراقبة اللاسلكية عبر الجوال (ESP32)",
         desc: "تطبيق عملي للوحة التحكم عبر الشبكة المحلية لعرض حالة المناطق والتحكم بالأجهزة عن بعد."
@@ -1124,16 +1278,31 @@
     function renderGallery(filter = "all") {
       const grid = document.getElementById("galleryGrid");
       const list = filter === "all" ? GALLERY_ITEMS : GALLERY_ITEMS.filter(x => x.cat === filter);
-      grid.innerHTML = list.map((item, idx) => `
-        <div class="gallery-item" onclick="openLightbox('${item.src}', '${item.title}', '${item.desc}')">
-          <img src="${item.src}" alt="${item.title}" loading="lazy" />
-          <div class="gallery-caption">
-            <small>${item.cat}</small>
-            <h4>${item.title}</h4>
-            <p>${item.desc}</p>
+
+      grid.innerHTML = list.map((item, idx) => {
+        const fallbackSrc = (IMAGE_SOURCES[item.imgKey] && IMAGE_SOURCES[item.imgKey][0]) || "";
+        return `
+          <div class="gallery-item" data-gallery-idx="${idx}">
+            <img id="gal-img-${item.imgKey}-${idx}" src="${fallbackSrc}" alt="${item.title}" loading="lazy" />
+            <div class="gallery-caption">
+              <small>${item.cat}</small>
+              <h4>${item.title}</h4>
+              <p>${item.desc}</p>
+            </div>
           </div>
-        </div>
-      `).join("");
+        `;
+      }).join("");
+
+      list.forEach((item, idx) => {
+        const imgEl = document.getElementById(`gal-img-${item.imgKey}-${idx}`);
+        const cardEl = grid.querySelector(`.gallery-item[data-gallery-idx="${idx}"]`);
+        resolveImageSource(item.imgKey, (finalSrc) => {
+          if (imgEl && finalSrc) imgEl.src = finalSrc;
+          if (cardEl) {
+            cardEl.onclick = () => openLightbox(finalSrc || fallbackSrc, item.title, item.desc);
+          }
+        });
+      });
     }
 
     function filterGallery(cat, btn) {
@@ -1455,11 +1624,11 @@
     }
 
     // =========================================================
-    // 3. Rating System (No Fake Success Message)
+    // 3. Rating System (Google Form Integration)
     // =========================================================
-    // أضف رابط تضمين Google Form هنا عند إنشائه ليظهر النموذج السحابي مباشرة:
+    // ضع رابط Google Form هنا (يُفضّل أن ينتهي بـ ?embedded=true):
     const GOOGLE_FORM_EMBED_URL = "";
-    // أو أضف رابط Google Apps Script Web App هنا لحفظ الردود في Google Sheets:
+    // أو ضع رابط Google Apps Script Web App هنا لحفظ الردود في Google Sheets:
     const GOOGLE_APPS_SCRIPT_URL = "";
 
     let selectedRating = 0;
@@ -1470,9 +1639,16 @@
       });
     }
 
-    if (GOOGLE_FORM_EMBED_URL) {
+    if (GOOGLE_FORM_EMBED_URL && GOOGLE_FORM_EMBED_URL.trim() !== "") {
+      const rawUrl = GOOGLE_FORM_EMBED_URL.trim();
+      const embeddedUrl = rawUrl.includes("embedded=true")
+        ? rawUrl
+        : rawUrl + (rawUrl.includes("?") ? "&embedded=true" : "?embedded=true");
+      const directUrl = rawUrl.replace(/[?&]embedded=true/g, "");
+
       document.getElementById("googleFormContainer").style.display = "block";
-      document.getElementById("googleFormFrame").src = GOOGLE_FORM_EMBED_URL;
+      document.getElementById("googleFormFrame").src = embeddedUrl;
+      document.getElementById("googleFormExternalLink").href = directUrl;
       document.getElementById("ratingForm").style.display = "none";
     }
 
@@ -1487,7 +1663,7 @@
       }
 
       if (!GOOGLE_APPS_SCRIPT_URL) {
-        fb.innerHTML = "⚠️ <strong>لم يتم ربط قاعدة الحفظ السحابية بعد:</strong> التزاماً بالدقة وعدم عرض رسالة نجاح وهمية، يرجى إضافة رابط Google Form في <code>GOOGLE_FORM_EMBED_URL</code> أو رابط Google Sheets Web App في <code>GOOGLE_APPS_SCRIPT_URL</code> داخل الكود لحفظ التقييمات فعلياً للفريق.";
+        fb.innerHTML = "⚠️ <strong>لم يتم ربط رابط Google Form بعد:</strong> أضف رابط النموذج داخل <code>GOOGLE_FORM_EMBED_URL</code> في الكود ليظهر نموذج Google Form مباشرة، أو أضف رابط <code>GOOGLE_APPS_SCRIPT_URL</code> لحفظ التقييمات في Google Sheets.";
         return;
       }
 
@@ -1515,6 +1691,7 @@
     }
 
     // Initialize
+    applySmartImagesToDom();
     renderGallery();
     renderSimulation();
   </script>
