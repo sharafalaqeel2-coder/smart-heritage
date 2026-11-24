@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مشكاة الثقافة | التراث الذكي – SMART HERITAGE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-950: #07111f;
+      --navy-900: #0b192c;
+      --navy-800: #132743;
+      --navy-700: #1c3860;
+      --gold-500: #d4af37;
+      --gold-400: #e6c65c;
+      --gold-soft: rgba(212, 175, 55, 0.14);
+      --white: #ffffff;
+      --slate-100: #f4f6f9;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --radius: 16px;
+      --shadow: 0 14px 36px rgba(4, 10, 20, 0.35);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--navy-950);
+      color: var(--white);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* Sticky Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(7, 17, 31, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+    }
+    .nav-container {
+      max-width: 1280px;
+      margin: auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--white);
+    }
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--gold-500), #9e7b18);
+      color: var(--navy-950);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+    }
+    .brand-text h1 { font-size: 1.05rem; font-weight: 800; color: var(--gold-400); line-height: 1.2; }
+    .brand-text span { font-size: 0.72rem; color: var(--slate-300); letter-spacing: 0.5px; display: block; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--slate-300);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.45rem 0.75rem;
+      border-radius: 10px;
+      transition: var(--transition);
+    }
+    nav a:hover, nav a.active {
+      background: var(--gold-soft);
+      color: var(--gold-400);
+    }
+    .menu-toggle {
+      display: none;
+      background: var(--navy-800);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: var(--gold-400);
+      padding: 0.45rem 0.8rem;
+      border-radius: 10px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Sections */
+    section {
+      padding: 4.5rem 1.25rem;
+      max-width: 1280px;
+      margin: auto;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.75rem;
+    }
+    .section-badge {
+      display: inline-block;
+      background: var(--gold-soft);
+      color: var(--gold-400);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      padding: 0.25rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 0.65rem;
+    }
+    .section-header h2 {
+      font-size: clamp(1.65rem, 3vw, 2.3rem);
+      font-weight: 800;
+      color: var(--white);
+    }
+    .section-header p {
+      color: var(--slate-300);
+      max-width: 720px;
+      margin: 0.5rem auto 0;
+      font-size: 1rem;
+    }
+
+    /* Hero */
+    .hero {
+      padding-top: 3rem;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2.25rem;
+      align-items: center;
+    }
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+    .hero-title span { color: var(--gold-400); }
+    .hero-slogan {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold-500);
+      margin-bottom: 1rem;
+    }
+    .hero-desc {
+      color: var(--slate-300);
+      font-size: 1.02rem;
+      margin-bottom: 1.6rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 1.75rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-500), #b58d22);
+      color: var(--navy-950);
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+    }
+    .btn-gold:hover { transform: translateY(-2px); filter: brightness(1.06); }
+    .btn-outline {
+      background: rgba(255,255,255,0.04);
+      color: var(--white);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+    }
+    .btn-outline:hover { background: var(--gold-soft); color: var(--gold-400); }
+
+    .hero-card {
+      background: var(--navy-900);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .hero-card img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-status-bar {
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--navy-800);
+      font-size: 0.88rem;
+    }
+    .dot-live {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--ok);
+      display: inline-block;
+      margin-left: 6px;
+      box-shadow: 0 0 10px var(--ok);
+    }
+
+    /* Overview Grid & Scalability */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .card {
+      background: var(--navy-900);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      transition: var(--transition);
+    }
+    .card:hover {
+      border-color: rgba(212, 175, 55, 0.45);
+      transform: translateY(-3px);
+    }
+    .card h3 {
+      color: var(--gold-400);
+      font-size: 1.12rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card p { color: var(--slate-300); font-size: 0.92rem; }
+
+    .scalability-banner {
+      margin-top: 2.25rem;
+      background: linear-gradient(135deg, rgba(19, 39, 67, 0.95), rgba(11, 25, 44, 0.98));
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+    .scalability-banner h3 {
+      color: var(--gold-400);
+      font-size: 1.35rem;
+      margin-bottom: 0.75rem;
+    }
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+    .app-item {
+      background: rgba(7, 17, 31, 0.65);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 14px;
+      padding: 1rem;
+    }
+    .app-item strong { color: var(--gold-400); display: block; margin-bottom: 0.3rem; }
+    .app-item span { color: var(--slate-300); font-size: 0.88rem; }
+
+    /* Interactive Simulation */
+    .sim-banner {
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      color: #fde68a;
+      padding: 0.85rem 1.25rem;
+      border-radius: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+    .scenarios-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+    .sim-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.35rem;
+    }
+    .sim-card {
+      background: var(--navy-900);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 18px;
+      padding: 1.35rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .sim-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 0.65rem;
+    }
+    .sim-card-head h3 { font-size: 1.1rem; color: var(--gold-400); }
+    .pill {
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .pill-ok { background: rgba(34, 197, 94, 0.18); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.4); }
+    .pill-warn { background: rgba(245, 158, 11, 0.18); color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.4); }
+    .pill-danger { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.45); }
+
+    .parking-slots {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.65rem;
+    }
+    .slot-btn {
+      padding: 0.75rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .slot-free { background: rgba(34, 197, 94, 0.16); color: #86efac; border-color: rgba(34, 197, 94, 0.45); }
+    .slot-busy { background: rgba(239, 68, 68, 0.18); color: #fca5a5; border-color: rgba(239, 68, 68, 0.45); }
+
+    .lcd-screen {
+      background: #0d3b66;
+      border: 3px solid #1e293b;
+      border-radius: 10px;
+      padding: 0.65rem 0.85rem;
+      font-family: monospace;
+      color: #7dd3fc;
+      font-size: 0.92rem;
+      direction: ltr;
+      text-align: left;
+      box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.6);
+    }
+    .input-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .input-row input, .form-control {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: var(--navy-950);
+      color: var(--white);
+      font-family: inherit;
+    }
+
+    .sensor-slider { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.88rem; }
+    .sensor-slider label { display: flex; justify-content: space-between; color: var(--slate-300); }
+    input[type="range"] { accent-color: var(--gold-500); width: 100%; }
+
+    .bar-wrap {
+      height: 8px;
+      background: var(--navy-950);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar-fill { height: 100%; background: var(--gold-500); transition: width 0.25s ease; }
+
+    .ctrl-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .mini-btn {
+      padding: 0.45rem 0.75rem;
+      border-radius: 9px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: var(--navy-800);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .mini-btn:hover { border-color: var(--gold-500); color: var(--gold-400); }
+    .mini-btn.active-on { background: var(--gold-500); color: var(--navy-950); border-color: var(--gold-500); font-weight: 800; }
+    .mini-btn.active-danger { background: var(--danger); color: var(--white); border-color: var(--danger); }
+
+    .rfid-box {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.14), rgba(19, 39, 67, 0.9));
+      border: 1px dashed var(--gold-500);
+      border-radius: 12px;
+      padding: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .event-log {
+      background: var(--navy-950);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 0.6rem 0.75rem;
+      max-height: 115px;
+      overflow-y: auto;
+      font-size: 0.8rem;
+      color: var(--slate-300);
+    }
+    .event-log div { padding: 0.2rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+    .manual-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.88rem;
+    }
+
+    /* Video & PDF */
+    .media-box {
+      background: var(--navy-900);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    video {
+      width: 100%;
+      max-height: 540px;
+      border-radius: 14px;
+      background: #000;
+      display: block;
+    }
+    .pdf-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .pdf-cover-card {
+      background: var(--navy-950);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 16px;
+      overflow: hidden;
+      padding: 1rem;
+      text-align: center;
+    }
+    .pdf-cover-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 0.85rem;
+    }
+    .pdf-viewer {
+      width: 100%;
+      height: 560px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    /* Gallery */
+    .gallery-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.2rem;
+    }
+    .gallery-item {
+      background: var(--navy-900);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-500);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-caption { padding: 1rem; }
+    .gallery-caption small { color: var(--gold-400); font-weight: 700; }
+    .gallery-caption h4 { font-size: 1rem; margin: 0.25rem 0; }
+    .gallery-caption p { font-size: 0.85rem; color: var(--slate-300); }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 9, 18, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      z-index: 2000;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-content {
+      max-width: 920px;
+      width: 100%;
+      background: var(--navy-900);
+      border: 1px solid var(--gold-500);
+      border-radius: 18px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .lightbox-content img {
+      max-height: 72vh;
+      max-width: 100%;
+      border-radius: 12px;
+    }
+
+    /* Rating Form */
+    .rating-wrap {
+      max-width: 760px;
+      margin: auto;
+      background: var(--navy-900);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+    .stars {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 2rem;
+      justify-content: center;
+      margin: 0.75rem 0 1.25rem;
+    }
+    .star-btn {
+      background: none;
+      border: none;
+      color: #475569;
+      cursor: pointer;
+      font-size: 2rem;
+      transition: transform 0.2s;
+    }
+    .star-btn.selected { color: var(--gold-400); transform: scale(1.12); }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; margin-bottom: 0.35rem; font-weight: 700; color: var(--gold-400); }
+    .notice-box {
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      font-size: 0.88rem;
+      color: var(--slate-100);
+    }
+
+    /* Team */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.2rem;
+    }
+    .team-card {
+      background: var(--navy-900);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      border-radius: 18px;
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .team-card:hover { transform: translateY(-4px); border-color: var(--gold-500); }
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      margin: 0 auto 0.85rem;
+      background: linear-gradient(135deg, var(--gold-500), var(--navy-700));
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 1.35rem;
+      color: var(--white);
+    }
+    .team-card h3 { font-size: 1.12rem; color: var(--white); }
+    .team-card .en-name { color: var(--gold-400); font-size: 0.88rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .team-card p { font-size: 0.88rem; color: var(--slate-300); }
+
+    /* Footer */
+    footer {
+      background: #040a14;
+      border-top: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 2.5rem 1.25rem;
+      text-align: center;
+      color: var(--slate-400);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .pdf-layout { grid-template-columns: 1fr; }
+      nav ul { display: none; width: 100%; flex-direction: column; padding-top: 0.75rem; }
+      nav ul.show { display: flex; }
+      .menu-toggle { display: inline-block; }
+      .nav-container { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#home" class="brand">
+        <div class="brand-icon">م</div>
+        <div class="brand-text">
+          <h1>مشكاة الثقافة | التراث الذكي</h1>
+          <span>MISHKAT AL-THAQAFA | SMART HERITAGE</span>
+        </div>
+      </a>
+      <button class="menu-toggle" onclick="document.getElementById('navList').classList.toggle('show')">☰ القائمة</button>
+      <nav>
+        <ul id="navList">
+          <li><a href="#home">الرئيسية</a></li>
+          <li><a href="#simulation">المحاكاة التفاعلية</a></li>
+          <li><a href="#video">الفيديو التعريفي</a></li>
+          <li><a href="#gallery">معرض الصور</a></li>
+          <li><a href="#research">البحث العلمي</a></li>
+          <li><a href="#rating">تقييم المشروع</a></li>
+          <li><a href="#team">فريق العمل</a></li>
+          <li><a href="#contact">التواصل</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 1. Home Section -->
+  <section id="home">
+    <div class="hero">
+      <div>
+        <span class="section-badge">منظومة إنترنت الأشياء والحماية الذكية للمواقع الأثرية</span>
+        <h2 class="hero-title">مشروع <span>مشكاة الثقافة</span><br>التراث الذكي (SMART HERITAGE)</h2>
+        <div class="hero-slogan">«تقنية ذكية لحماية تراثنا»</div>
+        <p class="hero-desc">
+          منظومة هندسية متكاملة منخفضة التكلفة تجمع بين المتحكمات الدقيقة (Arduino Mega 2560 وESP32-C3) وشبكة الحساسات الذكية لحماية المخطوطات النادرة، وترشيد إضاءة المتاحف الأثرية، وتأمين مواقع الحفريات، وإدارة المواقف الذكية وغرفة المراقبة والتحكم لحظياً.
+        </p>
+        <div class="hero-actions">
+          <a href="#simulation" class="btn btn-gold">🎛️ استكشاف المحاكاة التفاعلية</a>
+          <a href="#research" class="btn btn-outline">📄 قراءة البحث العلمي PDF</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="assets/hero-model.jpg" alt="مجسم مشروع مشكاة الثقافة - التراث الذكي" />
+        <div class="hero-status-bar">
+          <span><i class="dot-live"></i> حالة المنظومة: 6 وحدات متكاملة نشطة</span>
+          <strong style="color:var(--gold-400)">MISHKAT AL-THAQAFA</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Six Systems Summary -->
+    <div style="margin-top: 3rem;">
+      <div class="section-header" style="margin-bottom: 1.75rem;">
+        <span class="section-badge">نظرة عامة على المنظومة</span>
+        <h2>الأنظمة الستة وأهداف المشروع</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>🅿️ 1. المواقف الذكية</h3>
+          <p>رادار فوق صوتي محمول على محرك سيرفو يمسح المواقف A1–A4 ويعرض حالتها مباشرة على شاشة LCD I2C ومؤشرات LED.</p>
+        </div>
+        <div class="card">
+          <h3>📜 2. متحف المخطوطات</h3>
+          <p>مراقبة مستمرة للحرارة والرطوبة والغاز مع فتح نافذة التهوية وتشغيل مروحة الشفط تلقائياً لحماية الوثائق النادرة.</p>
+        </div>
+        <div class="card">
+          <h3>🏺 3. المتحف الأثري</h3>
+          <p>إضاءة ذكية مزدوجة التحقق (حساس باب + حساس حركة) لتقليل التعرض الضوئي وحماية القطع الأثرية وترشيد الطاقة.</p>
+        </div>
+        <div class="card">
+          <h3>⛏️ 4. موقع الحفريات</h3>
+          <p>إنذار مبكر عند الاقتراب من حافة الحفريات، وإنذار صوتي وضوئي فوري عند رصد سقوط أو تسلل داخل الحفرة.</p>
+        </div>
+        <div class="card">
+          <h3>🛡️ 5. غرفة التحكم والأمان</h3>
+          <p>حماية متعددة الطبقات تشمل حساس اقتراب IR، وحساس باب مغناطيسي Reed، وقارئ بطاقات RFID لفتح الباب وإيقاف الإنذار.</p>
+        </div>
+        <div class="card">
+          <h3>🎛️ 6. لوحة التحكم المركزي</h3>
+          <p>واجهة تحكم يدوية شاملة عبر الشبكة المحلية تتيح إدارة جميع المشغلات وإعادة ضبط الأنظمة من مكان واحد.</p>
+        </div>
+      </div>
+
+      <!-- Broader Applications Beyond Museums -->
+      <div class="scalability-banner">
+        <h3>🌍 قابلية التوسع: تطبيقات تتجاوز المتاحف والمواقع الأثرية</h3>
+        <p style="color:var(--slate-300)">
+          صُممت أفكار وخوارزميات مشروع <strong>«مشكاة الثقافة – التراث الذكي»</strong> ببنية معيارية مرنة تتيح توظيفها في قطاعات حيوية متعددة وليس فقط في المتاحف والمواقع الأثرية:
+        </p>
+        <div class="apps-grid">
+          <div class="app-item">
+            <strong>📚 المكتبات والأرشيفات الوطنية</strong>
+            <span>حماية الكتب التاريخية والوثائق الورقية من الرطوبة والحرارة والغازات الضارة.</span>
+          </div>
+          <div class="app-item">
+            <strong>🏥 المستشفيات ومخازن الأدوية</strong>
+            <span>مراقبة بيئة حفظ اللقاحات والمواد الحساسة وتأمين الغرف عالية الخصوصية ببطاقات RFID.</span>
+          </div>
+          <div class="app-item">
+            <strong>🏭 المستودعات والمصانع الذكية</strong>
+            <span>الكشف المبكر عن تسرب الغازات، وتأمين مناطق الحفر والصيانة، وإدارة مواقف المركبات بحساس واحد.</span>
+          </div>
+          <div class="app-item">
+            <strong>🏫 المدارس والمنشآت الذكية</strong>
+            <span>ترشيد استهلاك الكهرباء في القاعات والممرات عبر الإضاءة التلقائية المعتمدة على الوجود الفعلي.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Interactive Simulation -->
+  <section id="simulation">
+    <div class="section-header">
+      <span class="section-badge">لوحة مراقبة وتحكم IoT مترابطة</span>
+      <h2>المحاكاة التفاعلية لمنظومة مشكاة الثقافة</h2>
+      <p>تحكم بالحساسات والأجهزة واختبر السيناريوهات الواقعية؛ جميع الأقسام مترابطة برمجياً وتحفظ حالتها تلقائياً.</p>
+    </div>
+
+    <div class="sim-banner">
+      <span>⚠️ وضع المحاكاة – البيانات افتراضية (محاكاة مستقلة تعمل دون اتصال مباشر بالأردوينو أو ESP32)</span>
+      <button class="btn btn-gold" style="padding:0.45rem 1rem;font-size:0.85rem" onclick="resetAllSystems()">🔄 إعادة ضبط جميع الأنظمة</button>
+    </div>
+
+    <!-- Test Scenarios -->
+    <div class="scenarios-bar">
+      <button class="mini-btn" onclick="applyScenario('normal')">✅ سيناريو: الوضع الطبيعي المستقر</button>
+      <button class="mini-btn" onclick="applyScenario('gas')">🔥 سيناريو: تسرب غاز وارتفاع حرارة المخطوطات</button>
+      <button class="mini-btn" onclick="applyScenario('pit')">🚨 سيناريو: سقوط شخص في موقع الحفريات</button>
+      <button class="mini-btn" onclick="applyScenario('intrusion')">🛡️ سيناريو: محاولة اختراق غرفة التحكم</button>
+      <button class="mini-btn" onclick="applyScenario('fullpark')">🅿️ سيناريو: امتلاء جميع المواقف الذكية</button>
+    </div>
+
+    <div class="sim-grid">
+      <!-- System 1: Smart Parking -->
+      <div class="sim-card">
+        <div class="sim-card-head">
+          <h3>🅿️ 1. المواقف الذكية (A1 – A4)</h3>
+          <span id="parkSummaryPill" class="pill pill-ok">4 متاحة / 0 مشغولة</span>
+        </div>
+        <div class="parking-slots" id="parkingSlots"></div>
+        <div class="lcd-screen" id="lcdDisplay">
+          <div>A1:Empty  A2:Empty</div>
+          <div>A3:Empty  A4:Empty</div>
+        </div>
+        <div class="input-row">
+          <input type="text" id="lcdCustomInput" maxlength="32" placeholder="اكتب نصاً لإرساله إلى شاشة LCD I2C..." />
+          <button class="mini-btn active-on" onclick="sendLcdCustom()">إرسال</button>
+          <button class="mini-btn" onclick="clearLcdCustom()">تلقائي</button>
+        </div>
+      </div>
+
+      <!-- System 2: Manuscripts Museum -->
+      <div class="sim-card">
+        <div class="sim-card-head">
+          <h3>📜 2. متحف المخطوطات</h3>
+          <span id="msStatusPill" class="pill pill-ok">بيئة آمنة مستقرة</span>
+        </div>
+        <div class="sensor-slider">
+          <label><span>درجة الحرارة (عتبة النافذة 30°C / المروحة 35°C)</span><strong id="tempVal">24 °C</strong></label>
+          <input type="range" id="tempSlider" min="15" max="45" value="24" oninput="updateManuscriptsFromSliders()" />
+          <div class="bar-wrap"><div id="tempBar" class="bar-fill" style="width:45%"></div></div>
+        </div>
+        <div class="sensor-slider">
+          <label><span>نسبة الرطوبة (عتبة النافذة 55% / المروحة 70%)</span><strong id="humVal">45 %</strong></label>
+          <input type="range" id="humSlider" min="20" max="95" value="45" oninput="updateManuscriptsFromSliders()" />
+          <div class="bar-wrap"><div id="humBar" class="bar-fill" style="width:45%"></div></div>
+        </div>
+        <div class="sensor-slider">
+          <label><span>قراءة حساس الغاز MQ-6 (متوسط 130 / خطر 300)</span><strong id="gasVal">85</strong></label>
+          <input type="range" id="gasSlider" min="40" max="500" value="85" oninput="updateManuscriptsFromSliders()" />
+          <div class="bar-wrap"><div id="gasBar" class="bar-fill" style="width:17%"></div></div>
+        </div>
+        <div class="ctrl-buttons">
+          <button class="mini-btn" id="msPersonBtn" onclick="toggleMsPerson()">👤 وجود أشخاص: لا</button>
+          <button class="mini-btn" id="msWinBtn" onclick="toggleDevice('windowOpen')">🪟 النافذة: مغلقة</button>
+          <button class="mini-btn" id="msLightBtn" onclick="toggleDevice('msLight')">💡 الإنارة: مطفأة</button>
+          <button class="mini-btn" id="msFanBtn" onclick="toggleDevice('msFan')">🌀 المروحة: متوقفة</button>
+        </div>
+      </div>
+
+      <!-- System 3: Artifacts Museum -->
+      <div class="sim-card">
+        <div class="sim-card-head">
+          <h3>🏺 3. المتحف الأثري</h3>
+          <span id="artStatusPill" class="pill pill-ok">القاعة فارغة – ترشيد الطاقة</span>
+        </div>
+        <div class="ctrl-buttons">
+          <button class="mini-btn" id="artVisitorBtn" onclick="toggleArtVisitor()">🚶 وجود زوار داخل المتحف: لا</button>
+          <button class="mini-btn" id="artLightBtn" onclick="toggleDevice('artLight')">💡 إنارة المتحف: مطفأة</button>
+        </div>
+        <div style="font-size:0.85rem;color:var(--slate-300)">
+          المنطق التشغيلي: عند رصد زائر عبر حساس الباب وتأكيد الحركة بالداخل تضاء القاعة لحماية القطع الأثرية من الإضاءة المستمرة.
+        </div>
+        <div class="event-log" id="artLog"></div>
+      </div>
+
+      <!-- System 4: Excavation Site -->
+      <div class="sim-card">
+        <div class="sim-card-head">
+          <h3>⛏️ 4. موقع الحفريات</h3>
+          <span id="excStatusPill" class="pill pill-ok">الموقع آمن (أخضر)</span>
+        </div>
+        <div class="ctrl-buttons">
+          <button class="mini-btn" id="excNearBtn" onclick="toggleExcNear()">⚠️ شخص بالقرب من الحفرة: لا</button>
+          <button class="mini-btn" id="excFallBtn" onclick="toggleExcFall()">🆘 سقوط / تسلل داخل الحفرة: لا</button>
+          <button class="mini-btn" id="excBuzzBtn" onclick="toggleDevice('excBuzzer')">🔔 جرس التنبيه: صامت</button>
+        </div>
+        <div class="event-log" id="excLog"></div>
+      </div>
+
+      <!-- System 5: Control Room with RFID -->
+      <div class="sim-card">
+        <div class="sim-card-head">
+          <h3>🛡️ 5. غرفة التحكم والأمان</h3>
+          <span id="ctlStatusPill" class="pill pill-ok">مؤمّنة – الباب مغلق</span>
+        </div>
+        <div class="ctrl-buttons">
+          <button class="mini-btn" id="ctlNearBtn" onclick="toggleCtlNear()">👁️ شخص قرب الباب (IR): لا</button>
+          <button class="mini-btn" id="ctlForceBtn" onclick="triggerForceDoor()">🚪 محاولة فتح الباب بالقوة / اختراق</button>
+          <button class="mini-btn" id="ctlBadCardBtn" onclick="triggerBadCard()">❌ إدخال بطاقة RFID خاطئة</button>
+        </div>
+        <div class="rfid-box">
+          <strong style="color:var(--gold-400);font-size:0.9rem">💳 قارئ البطاقات الذكي RFID (RC522)</strong>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+            <button class="btn btn-gold" style="padding:0.5rem 0.95rem;font-size:0.85rem" onclick="scanValidRfid()">✅ تمرير بطاقة مصرح بها (فتح الباب وإيقاف الإنذار)</button>
+            <button class="mini-btn" onclick="closeControlDoor()">🔒 إغلاق الباب</button>
+            <button class="mini-btn" id="ctlBuzzBtn" onclick="toggleDevice('ctlBuzzer')">🔔 الجرس: صامت</button>
+          </div>
+        </div>
+        <div class="event-log" id="ctlLog"></div>
+      </div>
+
+      <!-- System 6: Central Manual Control -->
+      <div class="sim-card">
+        <div class="sim-card-head">
+          <h3>🎛️ 6. التحكم اليدوي المركزي</h3>
+          <span class="pill pill-warn">مزامنة فورية مع الأقسام</span>
+        </div>
+        <div id="manualPanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Intro Video -->
+  <section id="video">
+    <div class="section-header">
+      <span class="section-badge">العرض المرئي للمشروع</span>
+      <h2>الفيديو التعريفي بالمشروع</h2>
+      <p>شرح عملي على المجسم الفعلي يوضح آلية عمل المواقف الذكية، والمتاحف، وموقع الحفريات، وغرفة المراقبة والتحكم.</p>
+    </div>
+    <div class="media-box">
+      <video controls preload="metadata" poster="assets/hero-model.jpg">
+        <source src="media/Smart_Heritage_Intro.mp4" type="video/mp4" />
+        متصفحك لا يدعم تشغيل الفيديو مباشرة. يمكنك تحميل المقطع من الرابط أدناه.
+      </video>
+      <div style="margin-top:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem">
+        <span style="color:var(--slate-300);font-size:0.9rem">تقديم: فريق مشكاة الثقافة – مدارس المتقدمة للتعلم الذكي</span>
+        <a href="media/Smart_Heritage_Intro.mp4" download class="btn btn-outline" style="padding:0.55rem 1.1rem;font-size:0.88rem">⬇️ تحميل الفيديو التعريفي</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Photo Gallery -->
+  <section id="gallery">
+    <div class="section-header">
+      <span class="section-badge">توثيق البناء والهندسة</span>
+      <h2>رحلة تنفيذ مشروع التراث الذكي</h2>
+      <p>توثيق بصري حقيقي لمراحل بناء المجسم المعماري، وتركيب الحساسات والمتحكمات، والمخطط الهندسي، ولوحة التحكم.</p>
+    </div>
+    <div class="gallery-filters">
+      <button class="mini-btn active-on" onclick="filterGallery('all', this)">الكل</button>
+      <button class="mini-btn" onclick="filterGallery('المجسم الكامل', this)">المجسم الكامل</button>
+      <button class="mini-btn" onclick="filterGallery('مراحل التنفيذ', this)">مراحل التنفيذ</button>
+      <button class="mini-btn" onclick="filterGallery('الأجهزة والمكونات', this)">الأجهزة والمكونات</button>
+      <button class="mini-btn" onclick="filterGallery('المخططات التقنية', this)">المخططات التقنية</button>
+      <button class="mini-btn" onclick="filterGallery('التجربة الرقمية', this)">التجربة الرقمية</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="lightbox-content">
+      <img id="lbImg" src="" alt="" />
+      <h3 id="lbTitle" style="color:var(--gold-400);margin-top:0.75rem"></h3>
+      <p id="lbDesc" style="color:var(--slate-300);font-size:0.9rem;margin:0.35rem 0 0.85rem"></p>
+      <button class="btn btn-gold" style="padding:0.45rem 1.2rem" onclick="document.getElementById('lightbox').classList.remove('open')">إغلاق</button>
+    </div>
+  </div>
+
+  <!-- 5. Scientific Research PDF -->
+  <section id="research">
+    <div class="section-header">
+      <span class="section-badge">التوثيق العلمي والهندسي</span>
+      <h2>البحث العلمي للمشروع</h2>
+      <p>دفتر الهندسة والبحث العلمي الكامل لمشروع «مشكاة الثقافة | التراث الذكي – Smart Heritage Engineering Notebook 2026».</p>
+    </div>
+    <div class="media-box pdf-layout">
+      <div class="pdf-cover-card">
+        <img src="assets/pdf-cover.jpg" alt="غلاف البحث العلمي لمشروع التراث الذكي" />
+        <h3 style="color:var(--gold-400);font-size:1.05rem;margin-bottom:0.4rem">Smart Heritage: Automated Protection for Heritage Sites</h3>
+        <p style="color:var(--slate-300);font-size:0.85rem;margin-bottom:1rem">
+          يتضمن المشكلة البحثية، التصميم المعماري والإلكتروني، جداول التوصيل، نتائج الاختبار، والأكواد البرمجية الكاملة.
+        </p>
+        <a href="docs/Smart_Heritage_Engineering_Notebook.pdf" download class="btn btn-gold" style="width:100%">⬇️ تحميل البحث العلمي (PDF)</a>
+      </div>
+      <iframe class="pdf-viewer" src="docs/Smart_Heritage_Engineering_Notebook.pdf" title="البحث العلمي لمشروع التراث الذكي"></iframe>
+    </div>
+  </section>
+
+  <!-- 6. Project Rating -->
+  <section id="rating">
+    <div class="section-header">
+      <span class="section-badge">آراء الزوار ولجنة التحكيم</span>
+      <h2>تقييم المشروع</h2>
+      <p>نرحب بملاحظاتكم واقتراحاتكم لتطوير منظومة «مشكاة الثقافة – التراث الذكي».</p>
+    </div>
+    <div class="rating-wrap">
+      <!--
+        لتفعيل الحفظ السحابي المباشر في Google Sheets / Google Forms:
+        ضع رابط Google Form (بصيغة /viewform?embedded=true) داخل المتغير GOOGLE_FORM_EMBED_URL في السكربت أدناه،
+        وسيعرض الموقع النموذج الحقيقي مباشرة دون أي رسالة نجاح وهمية.
+      -->
+      <div id="googleFormContainer" style="display:none;margin-bottom:1.5rem">
+        <iframe id="googleFormFrame" src="" width="100%" height="580" frameborder="0" marginheight="0" marginwidth="0" style="border-radius:14px;background:#fff">جارٍ التحميل…</iframe>
+      </div>
+
+      <form id="ratingForm" onsubmit="submitRating(event)">
+        <div style="text-align:center;font-weight:700;color:var(--gold-400)">اختر التقييم العام للمشروع (من 1 إلى 5 نجوم)</div>
+        <div class="stars" id="starContainer">
+          <button type="button" class="star-btn" data-v="1" onclick="setStars(1)">★</button>
+          <button type="button" class="star-btn" data-v="2" onclick="setStars(2)">★</button>
+          <button type="button" class="star-btn" data-v="3" onclick="setStars(3)">★</button>
+          <button type="button" class="star-btn" data-v="4" onclick="setStars(4)">★</button>
+          <button type="button" class="star-btn" data-v="5" onclick="setStars(5)">★</button>
+        </div>
+        <div class="form-group">
+          <label for="visitorName">اسم الزائر / المحكّم (اختياري)</label>
+          <input type="text" id="visitorName" class="form-control" placeholder="أدخل اسمك الكريم..." />
+        </div>
+        <div class="form-group">
+          <label for="visitorNotes">الملاحظات حول المشروع</label>
+          <textarea id="visitorNotes" rows="3" class="form-control" required placeholder="اكتب ملاحظاتك حول الفكرة والتنفيذ..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="visitorSuggestions">الاقتراحات التطويرية</label>
+          <textarea id="visitorSuggestions" rows="3" class="form-control" placeholder="شاركنا اقتراحاتك لتطوير النظام مستقبلاً..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold" style="width:100%">📤 إرسال التقييم</button>
+        <div id="ratingFeedback" class="notice-box" style="display:none"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- 7. Team Section -->
+  <section id="team">
+    <div class="section-header">
+      <span class="section-badge">فريق مشكاة الثقافة</span>
+      <h2>فريق العمل | OUR TEAM</h2>
+      <p>نخبة من الطلاب المبدعين عملوا بروح الفريق الواحد لتصميم وبرمجة وتنفيذ منظومة التراث الذكي.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">خ</div>
+        <h3>خالد الدوسري</h3>
+        <div class="en-name">Khalid Al-Dosari</div>
+        <p>مصمم المشروع والموقع<br><strong>Project &amp; Website Designer</strong></p>
+      </div>
+      <div class="team-card">
+        <div class="avatar">ع</div>
+        <h3>عاصم الصقور</h3>
+        <div class="en-name">Asim Al-Saqour</div>
+        <p>مبرمج المشروع<br><strong>Project Programmer</strong></p>
+      </div>
+      <div class="team-card">
+        <div class="avatar">ع</div>
+        <h3>عمر النجار</h3>
+        <div class="en-name">Omar Al-Najjar</div>
+        <p>مسؤول الكهربائيات<br><strong>Electrical Systems Specialist</strong></p>
+      </div>
+      <div class="team-card">
+        <div class="avatar">هـ</div>
+        <h3>هشام باجابر</h3>
+        <div class="en-name">Hisham Bajaber</div>
+        <p>مسؤول القطع والمكونات<br><strong>Components &amp; Hardware Specialist</strong></p>
+      </div>
+      <div class="team-card">
+        <div class="avatar">م</div>
+        <h3>محمد الغامدي</h3>
+        <div class="en-name">Mohammed Al-Ghamdi</div>
+        <p>مساعد عام<br><strong>General Assistant</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Contact Section -->
+  <section id="contact">
+    <div class="section-header">
+      <span class="section-badge">معلومات الفريق والتواصل</span>
+      <h2>تواصل معنا | CONTACT US</h2>
+      <p>يسعد فريق «مشكاة الثقافة» باستقبال استفسارات لجنة التحكيم والزوار والجهات المهتمة بتبني المشروع.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <h3>🏛️ هوية الفريق والمشروع</h3>
+        <p><strong>اسم المشروع:</strong> مشكاة الثقافة | التراث الذكي (SMART HERITAGE)<br><strong>الجهة التعليمية:</strong> مدارس المتقدمة للتعلم الذكي – جدة، المملكة العربية السعودية.</p>
+      </div>
+      <div class="card">
+        <h3>👨‍🏫 الإشراف الأكاديمي والتقني</h3>
+        <p><strong>مشرف الفريق:</strong> أ. شرف العقيل (Sharaf Al-Aqeel)<br><strong>المجال:</strong> الأنظمة المدمجة، إنترنت الأشياء (IoT)، وحماية التراث الثقافي.</p>
+      </div>
+      <div class="card">
+        <h3>📬 قنوات التواصل الرسمية</h3>
+        <p>سيتم إضافة البريد الإلكتروني الرسمي وحسابات التواصل المعتمدة للفريق فور اعتمادها للنشر العام دون إدراج أي بيانات غير مؤكدة.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>مشكاة الثقافة | التراث الذكي – MISHKAT AL-THAQAFA | SMART HERITAGE</strong></p>
+    <p>«تقنية ذكية لحماية تراثنا» — جميع الحقوق محفوظة لفريق المشروع © 2026</p>
+  </footer>
+
+  <script>
+    // =========================================================
+    // 1. Gallery Data (Real Project Images Only)
+    // =========================================================
+    const GALLERY_ITEMS = [
+      {
+        src: "assets/hero-model.jpg",
+        cat: "المجسم الكامل",
+        title: "المجسم المتكامل لمشروع مشكاة الثقافة – التراث الذكي",
+        desc: "لقطة شاملة للمناطق الخمس: المواقف الذكية، متحف المخطوطات، المتحف الأثري، موقع الحفريات، وغرفة المراقبة والتحكم."
+      },
+      {
+        src: "assets/stage-1-structure.jpg",
+        cat: "مراحل التنفيذ",
+        title: "المرحلة الأولى: بناء الهيكل المعماري وتوزيع المناطق",
+        desc: "تنفيذ المجسم المعماري وتحديد مواقع الحساسات ومسارات الحركة والمواقف الأربعة."
+      },
+      {
+        src: "assets/stage-2-parking-excavation.jpg",
+        cat: "مراحل التنفيذ",
+        title: "المرحلة الثانية: تجهيز المواقف الذكية A1–A4 وحفرة التنقيب",
+        desc: "تثبيت الرادار فوق الصوتي الدوار للمواقف وتجهيز موقع الحفريات بالرمل والحجارة وحساسات الأمان."
+      },
+      {
+        src: "assets/stage-3-control-room.jpg",
+        cat: "الأجهزة والمكونات",
+        title: "المرحلة الثالثة: تركيب حساسات غرفة المراقبة والتحكم",
+        desc: "تركيب حساس الأشعة تحت الحمراء IR والحساس المغناطيسي Reed Switch ومؤشرات الحالة LED على باب غرفة التحكم."
+      },
+      {
+        src: "assets/stage-4-excavation-sensors.jpg",
+        cat: "الأجهزة والمكونات",
+        title: "المرحلة الرابعة: دمج المتحكم وحساسات موقع الحفريات",
+        desc: "توصيل متحكم الأردوينو وحساسات المسافة والحركة في موقع الحفريات لاكتشاف الاقتراب أو السقوط."
+      },
+      {
+        src: "assets/wiring-diagram-v5.jpg",
+        cat: "المخططات التقنية",
+        title: "المخطط الكهربائي الكامل (Arduino Mega 2560 + ESP32)",
+        desc: "مخطط الربط الهندسي الشامل لجميع الحساسات والمشغلات ومقسمات الجهد 5V إلى 3.3V."
+      },
+      {
+        src: "assets/iot-mobile-dashboard.jpg",
+        cat: "التجربة الرقمية",
+        title: "لوحة المراقبة اللاسلكية عبر الجوال (ESP32)",
+        desc: "تطبيق عملي للوحة التحكم عبر الشبكة المحلية لعرض حالة المناطق والتحكم بالأجهزة عن بعد."
+      }
+    ];
+
+    function renderGallery(filter = "all") {
+      const grid = document.getElementById("galleryGrid");
+      const list = filter === "all" ? GALLERY_ITEMS : GALLERY_ITEMS.filter(x => x.cat === filter);
+      grid.innerHTML = list.map((item, idx) => `
+        <div class="gallery-item" onclick="openLightbox('${item.src}', '${item.title}', '${item.desc}')">
+          <img src="${item.src}" alt="${item.title}" loading="lazy" />
+          <div class="gallery-caption">
+            <small>${item.cat}</small>
+            <h4>${item.title}</h4>
+            <p>${item.desc}</p>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function filterGallery(cat, btn) {
+      document.querySelectorAll(".gallery-filters .mini-btn").forEach(b => b.classList.remove("active-on"));
+      btn.classList.add("active-on");
+      renderGallery(cat);
+    }
+
+    function openLightbox(src, title, desc) {
+      document.getElementById("lbImg").src = src;
+      document.getElementById("lbTitle").textContent = title;
+      document.getElementById("lbDesc").textContent = desc;
+      document.getElementById("lightbox").classList.add("open");
+    }
+
+    // =========================================================
+    // 2. Interconnected 6-Zone Simulation State (localStorage)
+    // =========================================================
+    const DEFAULT_STATE = {
+      parking: [false, false, false, false],
+      lcdCustom: "",
+      temp: 24,
+      hum: 45,
+      gas: 85,
+      msPerson: false,
+      windowOpen: false,
+      msLight: false,
+      msFan: false,
+      artVisitor: false,
+      artLight: false,
+      excNear: false,
+      excFall: false,
+      excBuzzer: false,
+      ctlNear: false,
+      ctlDoorOpen: false,
+      ctlBuzzer: false,
+      ctlIntrusion: false,
+      ctlBadCard: false,
+      artLog: ["[النظام] تهيئة المتحف الأثري – الإضاءة في وضع ترشيد الطاقة."],
+      excLog: ["[النظام] تهيئة موقع الحفريات – الوضع آمن ومستقر."],
+      ctlLog: ["[النظام] تهيئة غرفة التحكم – الباب مغلق ومؤمّن ببطاقة RFID."]
+    };
+
+    let state = JSON.parse(localStorage.getItem("mishkat_sim_v1") || "null") || structuredClone(DEFAULT_STATE);
+
+    function saveState() {
+      localStorage.setItem("mishkat_sim_v1", JSON.stringify(state));
+    }
+
+    function nowTime() {
+      return new Date().toLocaleTimeString("ar-SA", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+    }
+
+    function addLog(key, msg) {
+      state[key].unshift(`[${nowTime()}] ${msg}`);
+      if (state[key].length > 15) state[key].pop();
+    }
+
+    function toggleParking(i) {
+      state.parking[i] = !state.parking[i];
+      state.lcdCustom = "";
+      saveState();
+      renderSimulation();
+    }
+
+    function sendLcdCustom() {
+      const val = document.getElementById("lcdCustomInput").value.trim();
+      if (!val) return;
+      state.lcdCustom = val;
+      saveState();
+      renderSimulation();
+    }
+
+    function clearLcdCustom() {
+      state.lcdCustom = "";
+      document.getElementById("lcdCustomInput").value = "";
+      saveState();
+      renderSimulation();
+    }
+
+    function updateManuscriptsFromSliders() {
+      state.temp = Number(document.getElementById("tempSlider").value);
+      state.hum = Number(document.getElementById("humSlider").value);
+      state.gas = Number(document.getElementById("gasSlider").value);
+
+      const high = state.gas >= 300 || state.temp >= 35 || state.hum >= 70;
+      const med = state.gas >= 130 || state.temp >= 30 || state.hum >= 55;
+      state.windowOpen = high || med;
+      state.msFan = high;
+      saveState();
+      renderSimulation();
+    }
+
+    function toggleMsPerson() {
+      state.msPerson = !state.msPerson;
+      state.msLight = state.msPerson;
+      saveState();
+      renderSimulation();
+    }
+
+    function toggleArtVisitor() {
+      state.artVisitor = !state.artVisitor;
+      state.artLight = state.artVisitor;
+      addLog("artLog", state.artVisitor ? "رصد زائر عند الباب وتأكيد الحركة بالداخل ← تشغيل الإنارة." : "مغادرة الزوار ← إطفاء الإنارة لحماية القطع الأثرية.");
+      saveState();
+      renderSimulation();
+    }
+
+    function toggleExcNear() {
+      state.excNear = !state.excNear;
+      addLog("excLog", state.excNear ? "تحذير أصفر: رصد شخص يقترب من حافة الحفريات." : "ابتعاد الشخص عن حافة الحفريات.");
+      saveState();
+      renderSimulation();
+    }
+
+    function toggleExcFall() {
+      state.excFall = !state.excFall;
+      state.excBuzzer = state.excFall;
+      addLog("excLog", state.excFall ? "🚨 إنذار أحمر: رصد سقوط أو تسلل داخل الحفرة! تشغيل الجرس." : "تم تأمين الحفرة وإيقاف حالة السقوط.");
+      saveState();
+      renderSimulation();
+    }
+
+    function toggleCtlNear() {
+      state.ctlNear = !state.ctlNear;
+      addLog("ctlLog", state.ctlNear ? "حساس IR: رصد شخص بالقرب من باب غرفة التحكم (إضاءة تحذير صفراء)." : "ابتعاد الشخص عن باب غرفة التحكم.");
+      saveState();
+      renderSimulation();
+    }
+
+    function triggerForceDoor() {
+      state.ctlDoorOpen = true;
+      state.ctlIntrusion = true;
+      state.ctlBuzzer = true;
+      addLog("ctlLog", "🚨 تنبيه اختراق! فتح باب غرفة التحكم بالقوة دون تصريح – الجرس يعمل.");
+      saveState();
+      renderSimulation();
+    }
+
+    function triggerBadCard() {
+      state.ctlBadCard = true;
+      state.ctlBuzzer = true;
+      addLog("ctlLog", "❌ بطاقة RFID غير مصرح بها! رفض الدخول وتشغيل جرس الإنذار.");
+      saveState();
+      renderSimulation();
+    }
+
+    function scanValidRfid() {
+      state.ctlDoorOpen = true;
+      state.ctlIntrusion = false;
+      state.ctlBadCard = false;
+      state.ctlBuzzer = false;
+      addLog("ctlLog", "✅ تم مسح بطاقة RFID مصرح بها: إيقاف الإنذار وفتح باب غرفة التحكم تلقائياً (80°).");
+      saveState();
+      renderSimulation();
+    }
+
+    function closeControlDoor() {
+      state.ctlDoorOpen = false;
+      addLog("ctlLog", "🔒 تم إغلاق باب غرفة التحكم وإعادة تفعيل الحماية المغناطيسية.");
+      saveState();
+      renderSimulation();
+    }
+
+    function toggleDevice(prop) {
+      state[prop] = !state[prop];
+      if (prop === "artLight") addLog("artLog", state.artLight ? "تشغيل إنارة المتحف الأثري يدوياً." : "إطفاء إنارة المتحف الأثري يدوياً.");
+      if (prop === "excBuzzer") addLog("excLog", state.excBuzzer ? "تشغيل جرس الحفريات يدوياً." : "إيقاف جرس الحفريات يدوياً.");
+      if (prop === "ctlDoorOpen") addLog("ctlLog", state.ctlDoorOpen ? "فتح باب غرفة التحكم يدوياً." : "إغلاق باب غرفة التحكم يدوياً.");
+      if (prop === "ctlBuzzer") addLog("ctlLog", state.ctlBuzzer ? "تشغيل جرس غرفة التحكم يدوياً." : "إيقاف جرس غرفة التحكم يدوياً.");
+      saveState();
+      renderSimulation();
+    }
+
+    function applyScenario(type) {
+      state = structuredClone(DEFAULT_STATE);
+      if (type === "gas") {
+        state.temp = 37; state.hum = 74; state.gas = 340;
+        state.windowOpen = true; state.msFan = true;
+      } else if (type === "pit") {
+        state.excNear = true; state.excFall = true; state.excBuzzer = true;
+        addLog("excLog", "🚨 سيناريو طارئ: سقوط شخص داخل حفرة التنقيب وتفعيل الجرس!");
+      } else if (type === "intrusion") {
+        state.ctlNear = true; state.ctlDoorOpen = true; state.ctlIntrusion = true; state.ctlBuzzer = true;
+        addLog("ctlLog", "🚨 سيناريو أمني: محاولة اقتحام غرفة التحكم! مرّر بطاقة RFID لإيقاف الإنذار.");
+      } else if (type === "fullpark") {
+        state.parking = [true, true, true, true];
+      }
+      saveState();
+      renderSimulation();
+    }
+
+    function resetAllSystems() {
+      state = structuredClone(DEFAULT_STATE);
+      document.getElementById("lcdCustomInput").value = "";
+      saveState();
+      renderSimulation();
+    }
+
+    function renderSimulation() {
+      // 1. Parking
+      const busyCount = state.parking.filter(Boolean).length;
+      const freeCount = 4 - busyCount;
+      const parkPill = document.getElementById("parkSummaryPill");
+      parkPill.textContent = `${freeCount} متاحة / ${busyCount} مشغولة`;
+      parkPill.className = "pill " + (freeCount === 0 ? "pill-danger" : "pill-ok");
+
+      document.getElementById("parkingSlots").innerHTML = state.parking.map((busy, i) => `
+        <button class="slot-btn ${busy ? "slot-busy" : "slot-free"}" onclick="toggleParking(${i})">
+          <span>موقف A${i + 1}</span>
+          <span>${busy ? "🔴 مشغول" : "🟢 شاغر"}</span>
+        </button>
+      `).join("");
+
+      const lcd = document.getElementById("lcdDisplay");
+      if (state.lcdCustom) {
+        lcd.innerHTML = `<div>${state.lcdCustom.slice(0, 16)}</div><div>${state.lcdCustom.slice(16, 32) || "&nbsp;"}</div>`;
+      } else {
+        lcd.innerHTML = `
+          <div>A1:${state.parking[0] ? "Full " : "Empty"}  A2:${state.parking[1] ? "Full " : "Empty"}</div>
+          <div>A3:${state.parking[2] ? "Full " : "Empty"}  A4:${state.parking[3] ? "Full " : "Empty"}</div>
+        `;
+      }
+
+      // 2. Manuscripts
+      document.getElementById("tempSlider").value = state.temp;
+      document.getElementById("humSlider").value = state.hum;
+      document.getElementById("gasSlider").value = state.gas;
+      document.getElementById("tempVal").textContent = `${state.temp} °C`;
+      document.getElementById("humVal").textContent = `${state.hum} %`;
+      document.getElementById("gasVal").textContent = state.gas;
+      document.getElementById("tempBar").style.width = `${((state.temp - 15) / 30) * 100}%`;
+      document.getElementById("humBar").style.width = `${((state.hum - 20) / 75) * 100}%`;
+      document.getElementById("gasBar").style.width = `${Math.min(100, (state.gas / 500) * 100)}%`;
+
+      const high = state.gas >= 300 || state.temp >= 35 || state.hum >= 70;
+      const med = state.gas >= 130 || state.temp >= 30 || state.hum >= 55;
+      const msPill = document.getElementById("msStatusPill");
+      if (high) { msPill.textContent = "خطر مرتفع (تهوية + شفط)"; msPill.className = "pill pill-danger"; }
+      else if (med) { msPill.textContent = "تحذير متوسط (فتح النافذة)"; msPill.className = "pill pill-warn"; }
+      else { msPill.textContent = "بيئة آمنة مستقرة"; msPill.className = "pill pill-ok"; }
+
+      document.getElementById("msPersonBtn").textContent = `👤 وجود أشخاص: ${state.msPerson ? "نعم" : "لا"}`;
+      document.getElementById("msPersonBtn").className = "mini-btn " + (state.msPerson ? "active-on" : "");
+      document.getElementById("msWinBtn").textContent = `🪟 النافذة: ${state.windowOpen ? "مفتوحة (90°)" : "مغلقة (0°)"}`;
+      document.getElementById("msWinBtn").className = "mini-btn " + (state.windowOpen ? "active-on" : "");
+      document.getElementById("msLightBtn").textContent = `💡 الإنارة: ${state.msLight ? "مضاءة" : "مطفأة"}`;
+      document.getElementById("msLightBtn").className = "mini-btn " + (state.msLight ? "active-on" : "");
+      document.getElementById("msFanBtn").textContent = `🌀 المروحة: ${state.msFan ? "تعمل" : "متوقفة"}`;
+      document.getElementById("msFanBtn").className = "mini-btn " + (state.msFan ? "active-on" : "");
+
+      // 3. Artifacts
+      const artPill = document.getElementById("artStatusPill");
+      artPill.textContent = state.artVisitor ? "يوجد زوار – الإضاءة نشطة" : "القاعة فارغة – ترشيد الطاقة";
+      artPill.className = "pill " + (state.artVisitor ? "pill-warn" : "pill-ok");
+      document.getElementById("artVisitorBtn").textContent = `🚶 وجود زوار داخل المتحف: ${state.artVisitor ? "نعم" : "لا"}`;
+      document.getElementById("artVisitorBtn").className = "mini-btn " + (state.artVisitor ? "active-on" : "");
+      document.getElementById("artLightBtn").textContent = `💡 إنارة المتحف: ${state.artLight ? "مضاءة" : "مطفأة"}`;
+      document.getElementById("artLightBtn").className = "mini-btn " + (state.artLight ? "active-on" : "");
+      document.getElementById("artLog").innerHTML = state.artLog.map(l => `<div>${l}</div>`).join("");
+
+      // 4. Excavation
+      const excPill = document.getElementById("excStatusPill");
+      if (state.excFall) { excPill.textContent = "🚨 سقوط / تسلل داخل الحفرة (أحمر)"; excPill.className = "pill pill-danger"; }
+      else if (state.excNear) { excPill.textContent = "⚠️ اقتراب من الحفرة (أصفر)"; excPill.className = "pill pill-warn"; }
+      else { excPill.textContent = "الموقع آمن ومستقر (أخضر)"; excPill.className = "pill pill-ok"; }
+
+      document.getElementById("excNearBtn").textContent = `⚠️ شخص بالقرب من الحفرة: ${state.excNear ? "نعم" : "لا"}`;
+      document.getElementById("excNearBtn").className = "mini-btn " + (state.excNear ? "active-on" : "");
+      document.getElementById("excFallBtn").textContent = `🆘 سقوط / تسلل داخل الحفرة: ${state.excFall ? "نعم" : "لا"}`;
+      document.getElementById("excFallBtn").className = "mini-btn " + (state.excFall ? "active-danger" : "");
+      document.getElementById("excBuzzBtn").textContent = `🔔 جرس التنبيه: ${state.excBuzzer ? "يرن" : "صامت"}`;
+      document.getElementById("excBuzzBtn").className = "mini-btn " + (state.excBuzzer ? "active-danger" : "");
+      document.getElementById("excLog").innerHTML = state.excLog.map(l => `<div>${l}</div>`).join("");
+
+      // 5. Control Room
+      const ctlPill = document.getElementById("ctlStatusPill");
+      if (state.ctlIntrusion || state.ctlBadCard) {
+        ctlPill.textContent = state.ctlBadCard ? "🚨 بطاقة غير مصرح بها!" : "🚨 محاولة اختراق للغرفة!";
+        ctlPill.className = "pill pill-danger";
+      } else if (state.ctlDoorOpen) {
+        ctlPill.textContent = "✅ الباب مفتوح بتصريح RFID";
+        ctlPill.className = "pill pill-ok";
+      } else if (state.ctlNear) {
+        ctlPill.textContent = "⚠️ شخص قرب الباب (تحذير أصفر)";
+        ctlPill.className = "pill pill-warn";
+      } else {
+        ctlPill.textContent = "مؤمّنة – الباب مغلق";
+        ctlPill.className = "pill pill-ok";
+      }
+      document.getElementById("ctlNearBtn").textContent = `👁️ شخص قرب الباب (IR): ${state.ctlNear ? "نعم" : "لا"}`;
+      document.getElementById("ctlNearBtn").className = "mini-btn " + (state.ctlNear ? "active-on" : "");
+      document.getElementById("ctlBuzzBtn").textContent = `🔔 الجرس: ${state.ctlBuzzer ? "يرن" : "صامت"}`;
+      document.getElementById("ctlBuzzBtn").className = "mini-btn " + (state.ctlBuzzer ? "active-danger" : "");
+      document.getElementById("ctlLog").innerHTML = state.ctlLog.map(l => `<div>${l}</div>`).join("");
+
+      // 6. Central Manual Panel (Synchronized)
+      const manualItems = [
+        { label: "موقف A1", state: state.parking[0], fn: "toggleParking(0)" },
+        { label: "موقف A2", state: state.parking[1], fn: "toggleParking(1)" },
+        { label: "موقف A3", state: state.parking[2], fn: "toggleParking(2)" },
+        { label: "موقف A4", state: state.parking[3], fn: "toggleParking(3)" },
+        { label: "نافذة متحف المخطوطات", state: state.windowOpen, fn: "toggleDevice('windowOpen')" },
+        { label: "إنارة متحف المخطوطات", state: state.msLight, fn: "toggleDevice('msLight')" },
+        { label: "مروحة متحف المخطوطات", state: state.msFan, fn: "toggleDevice('msFan')" },
+        { label: "إنارة المتحف الأثري", state: state.artLight, fn: "toggleDevice('artLight')" },
+        { label: "جرس موقع الحفريات", state: state.excBuzzer, fn: "toggleDevice('excBuzzer')" },
+        { label: "باب غرفة التحكم", state: state.ctlDoorOpen, fn: "toggleDevice('ctlDoorOpen')" },
+        { label: "جرس غرفة التحكم", state: state.ctlBuzzer, fn: "toggleDevice('ctlBuzzer')" }
+      ];
+      document.getElementById("manualPanel").innerHTML = manualItems.map(m => `
+        <div class="manual-row">
+          <span>${m.label}</span>
+          <button class="mini-btn ${m.state ? "active-on" : ""}" onclick="${m.fn}">
+            ${m.state ? "مُفعّل / مفتوح" : "متوقف / مغلق"}
+          </button>
+        </div>
+      `).join("");
+    }
+
+    // =========================================================
+    // 3. Rating System (No Fake Success Message)
+    // =========================================================
+    // أضف رابط تضمين Google Form هنا عند إنشائه ليظهر النموذج السحابي مباشرة:
+    const GOOGLE_FORM_EMBED_URL = "";
+    // أو أضف رابط Google Apps Script Web App هنا لحفظ الردود في Google Sheets:
+    const GOOGLE_APPS_SCRIPT_URL = "";
+
+    let selectedRating = 0;
+    function setStars(v) {
+      selectedRating = v;
+      document.querySelectorAll(".star-btn").forEach(b => {
+        b.classList.toggle("selected", Number(b.dataset.v) <= v);
+      });
+    }
+
+    if (GOOGLE_FORM_EMBED_URL) {
+      document.getElementById("googleFormContainer").style.display = "block";
+      document.getElementById("googleFormFrame").src = GOOGLE_FORM_EMBED_URL;
+      document.getElementById("ratingForm").style.display = "none";
+    }
+
+    async function submitRating(e) {
+      e.preventDefault();
+      const fb = document.getElementById("ratingFeedback");
+      fb.style.display = "block";
+
+      if (!selectedRating) {
+        fb.textContent = "يرجى اختيار عدد النجوم من 1 إلى 5 قبل الإرسال.";
+        return;
+      }
+
+      if (!GOOGLE_APPS_SCRIPT_URL) {
+        fb.innerHTML = "⚠️ <strong>لم يتم ربط قاعدة الحفظ السحابية بعد:</strong> التزاماً بالدقة وعدم عرض رسالة نجاح وهمية، يرجى إضافة رابط Google Form في <code>GOOGLE_FORM_EMBED_URL</code> أو رابط Google Sheets Web App في <code>GOOGLE_APPS_SCRIPT_URL</code> داخل الكود لحفظ التقييمات فعلياً للفريق.";
+        return;
+      }
+
+      const payload = {
+        timestamp: new Date().toISOString(),
+        stars: selectedRating,
+        name: document.getElementById("visitorName").value.trim() || "زائر",
+        notes: document.getElementById("visitorNotes").value.trim(),
+        suggestions: document.getElementById("visitorSuggestions").value.trim()
+      };
+
+      fb.textContent = "جارٍ إرسال التقييم وحفظه في سجل الفريق...";
+      try {
+        const res = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+          method: "POST",
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        fb.textContent = "✅ تم حفظ تقييمك بنجاح في سجل فريق مشكاة الثقافة. شكراً لمشاركتكم!";
+        document.getElementById("ratingForm").reset();
+        setStars(0);
+      } catch (err) {
+        fb.textContent = "❌ تعذّر الاتصال بخدمة الحفظ السحابية حالياً. يرجى المحاولة لاحقاً.";
+      }
+    }
+
+    // Initialize
+    renderGallery();
+    renderSimulation();
+  </script>
+</body>
+</html>
